@@ -1,0 +1,56 @@
+<mat-card>
+  <mat-card-content>
+
+
+  <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+    <h2>Login</h2>
+
+    <mat-form-field>
+
+
+      <input
+      matInput
+      name="username"
+      placeholder="Username"
+      [ngModel] = 'login.username'
+      required
+      minlength="3"
+      #username = "ngModel">
+      <div><mat-error *ngIf="submitted && username.invalid">Username is required</mat-error></div>
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+      <input
+      matInput
+      name="password"
+      type="password"
+      placeholder="Password"
+      [ngModel] = 'login.password'
+      required
+      maxlength = 10
+      minlength = 6
+      #password="ngModel">
+
+      <div *ngIf="submitted && password.errors" class="invalid-feedback">
+        <div *ngIf="password.errors.required">Password is required</div>
+        <div *ngIf="password.errors.minlength">Password must be at least 6 characters/max 10 characters</div>
+    </div>
+
+    </mat-form-field>
+
+    <div class="form-group">
+    <button
+    mat-raised-button color='accent'
+    type="submit">
+      Login
+    </button>
+    <mat-action-row>
+      <a mat-button color="primary" [routerLink] = "['/create']">Register</a>
+      </mat-action-row>
+  </div>
+  </form>
+  <div *ngIf="isinvaliduser">UserName/Password is incorrect</div>
+</mat-card-content>
+</mat-card>

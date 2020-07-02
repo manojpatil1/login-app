@@ -1,0 +1,89 @@
+<mat-card>
+  <mat-card-content>
+    <h2>Register New User</h2>
+
+  <form (submit)="addUser(loginForm)" #loginForm="ngForm">
+    <mat-form-field>
+
+
+      <input
+      matInput
+      name="firstname"
+      placeholder="FirstName"
+      [ngModel] = 'user.firstname'
+      required
+      minlength="3"
+      #firstname = "ngModel">
+      <div><mat-error *ngIf="submitted && firstname.invalid">FirstName is required</mat-error></div>
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+
+      <input
+      matInput
+      name="lastname"
+      placeholder="LastName"
+      [ngModel] = 'user.lastname'
+      required
+      minlength="3"
+      #lastname = "ngModel">
+      <div><mat-error *ngIf="submitted && lastname.invalid">LastName is required</mat-error></div>
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+
+      <input
+      matInput
+      name="username"
+      placeholder="Username"
+      [ngModel] = 'user.username'
+      required
+      minlength="3"
+      #username = "ngModel">
+      <div><mat-error *ngIf="submitted && username.invalid">Username is required</mat-error></div>
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+      <input
+      matInput
+      name="password"
+      type="password"
+      placeholder="Password"
+      [ngModel] = 'user.password'
+      required
+      maxlength = 10
+      minlength = 6
+      #password="ngModel">
+
+      <div *ngIf="submitted && password.errors" class="invalid-feedback">
+        <div *ngIf="password.errors.required">Password is required</div>
+        <div *ngIf="password.errors.minlength">Password must be at least 6 characters/max 10 characters</div>
+    </div>
+
+    </mat-form-field>
+
+    <div class="form-group">
+    <button
+    mat-raised-button color='accent'
+    type="submit">
+      Save
+    </button>
+    <mat-action-row>
+      <a mat-button color="primary" [routerLink] = "['']">Login</a>
+      </mat-action-row>
+
+  </div>
+  </form>
+
+
+  <div *ngIf="userCreated">User Created sussessfully !</div>
+
+
+</mat-card-content>
+</mat-card>
